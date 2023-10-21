@@ -1,0 +1,12 @@
+services:
+  express-serv:
+    build: ./express-serv
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    command: [ "node", "index.js" ]
+  redis:
+    image: "redis"
+    ports:
+      - "6379:6379"
