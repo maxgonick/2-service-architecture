@@ -4,7 +4,7 @@ const port = 8000
 const { createClient } = require('redis')
 
 const client = createClient({
-    url: "redis://redis:6379",
+url: "redis://redis-service:6379"
 });
 client.on('error', err => console.log('Redis Client Error', err));
 
@@ -27,8 +27,13 @@ app.get('/', async (req, res) => {
     res.send(`Counter: ${counter}`)
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-  redisInit()
-})
+try {
+  app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+    redisInit();
+  });
+} catch (err) {
+  console.error('Error starting the server:', err);
+}
+
 

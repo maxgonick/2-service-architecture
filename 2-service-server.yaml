@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 2-service-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 2-service-server
+  template:
+    metadata:
+      labels:
+        app: 2-service-server
+    spec:
+      containers:
+        - name: express-serv
+          image: maxgonick/2-service-architecture-express-serv
+          ports:
+            - containerPort: 8000
+          imagePullPolicy: Always

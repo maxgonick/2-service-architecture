@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 2-service-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 2-service-redis
+  template:
+    metadata:
+      labels:
+        app: 2-service-redis
+    spec:
+      volumes:
+        - name: redis-storage
+          persistentVolumeClaim:
+            claimName: mypvc 
+      containers:
+        - name: redis
+          image: redis
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - mountPath: "/data"
+              name: redis-storage

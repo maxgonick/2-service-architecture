@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "kubernetes://schema/apps/v1@deployment": "file:///Users/maxwellgonick/2-service-architecture/2-service-architecture.yaml"
+    }
+}
